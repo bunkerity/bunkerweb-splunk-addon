@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.1 - 2026/11/10
+
+- [BUGFIX] Enable the update checks required for Splunkbase-hosted packages so Splunk can notify administrators of new versions.
+- [MISC] Reject releases that disable Splunkbase update checks before publication.
+
 ## v1.0.0 - 2026/11/10
 
 - [FEATURE] Add the `bunkerweb:access`, `bunkerweb:error` and `bunkerweb:modsec_audit` sourcetypes with timestamps, line breaking and search-time field extraction.

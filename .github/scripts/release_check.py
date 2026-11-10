@@ -8,6 +8,7 @@ Exits non-zero, with the reason on stderr, when any of these differ:
   - TA-bunkerweb/app.manifest info.id.version
   - the tag (vX.Y.Z or vX.Y.Z-rcN)
   - the first CHANGELOG.md section: "## vX.Y.Z - YYYY/MM/DD" (not "????/??/??"), with a non-empty body
+Also rejects releases that disable Splunkbase update checks.
 """
 
 import argparse
@@ -24,6 +25,8 @@ TAG_RE = re.compile(r"^v\d+\.\d+\.\d+(-(?:alpha|beta|rc)\.?\d+)?$")
 def app_versions(root: Path) -> dict[str, str]:
     conf = configparser.ConfigParser(interpolation=None)
     conf.read(root / APP / "default" / "app.conf", encoding="utf-8")
+    if not conf.getboolean("package", "check_for_updates", fallback=True):
+        raise ValueError("Splunkbase-hosted releases require check_for_updates=true")
     manifest = json.loads((root / APP / "app.manifest").read_text(encoding="utf-8"))
     return {
         "app.conf [launcher] version": conf.get("launcher", "version"),

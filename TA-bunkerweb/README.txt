@@ -1,4 +1,4 @@
-BunkerWeb Add-on for Splunk (TA-bunkerweb) 1.0.0
+BunkerWeb Add-on for Splunk (TA-bunkerweb) 1.0.1
 ================================================
 
 Official add-on of the BunkerWeb project, by Bunkerity.

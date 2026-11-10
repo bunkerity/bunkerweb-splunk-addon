@@ -30,6 +30,15 @@ class ReleaseCheck(unittest.TestCase):
     def test_prerelease_tag(self):
         self.assertEqual(self.run_check("v1.0.0-rc1", conf="1.0.0-rc1", manifest="1.0.0-rc1", heading="v1.0.0-rc1 - 2026/11/10")[2], True)
 
+    def test_rejects_disabled_splunkbase_updates(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            tree(root)
+            with (root / "TA-bunkerweb" / "default" / "app.conf").open("a") as conf:
+                conf.write("\n[package]\ncheck_for_updates = false\n")
+            with self.assertRaisesRegex(ValueError, "check_for_updates"):
+                release_check.check(root, "v1.0.0")
+
     def test_rejections(self):
         for kwargs in (
             {"tag": "v1.0.1"},  # tag differs from the add-on version
