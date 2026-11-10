@@ -1,8 +1,9 @@
 # shellcheck shell=bash
-# Helpers shared by tests/run.sh. Sourced, not executed.
+# Helpers shared by tests/run.sh and tests/splunk.sh. Sourced, not executed.
 
 NAME=${SPLTA_NAME:-splta-splunk}
 MGMT_PORT=${SPLTA_MGMT_PORT:-19089}
+# Password file lives outside the repository, mode 0600, and is shredded by `down`.
 PASSFILE=${SPLTA_PASSFILE:-${XDG_RUNTIME_DIR:-/tmp}/splta-splunk.pass}
 BASE="https://127.0.0.1:${MGMT_PORT}"
 
@@ -13,12 +14,14 @@ sp_curl() {
 
 sp_wait() {
   for _ in $(seq 1 120); do
-    if sp_curl "$BASE/services/server/info?output_mode=json" 2>/dev/null | grep -q '"version"'; then
+    # The API can answer while the image's Ansible bootstrap is still configuring Splunk.
+    if [ "$(docker inspect --format '{{.State.Health.Status}}' "$NAME" 2>/dev/null)" = healthy ] &&
+        sp_curl -m 5 "$BASE/services/server/info?output_mode=json" 2>/dev/null | grep -q '"version"'; then
       return 0
     fi
     sleep 3
   done
-  echo "Splunk management port did not answer" >&2
+  echo "Splunk did not become healthy with an authenticated management API" >&2
   return 1
 }
 

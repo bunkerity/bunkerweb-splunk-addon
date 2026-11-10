@@ -286,7 +286,7 @@ Event types: `bunkerweb_access`, `bunkerweb_access_blocked`, `bunkerweb_modsec_a
 |---|---|
 | `TA-bunkerweb/` | the app: `default/{app,props,eventtypes,tags}.conf`, `metadata/default.meta`, `app.manifest`, `README.txt`, `LICENSES/LICENSE` |
 | `samples/` | `access.log`, `error.log`, `modsec_audit.log`: real events from BunkerWeb 1.6.18-rc3, client IP replaced by `203.0.113.45`, server IPs by `198.51.100.x` (documentation ranges). `access_adversarial.log`: synthetic quoted-field spoofing regressions. `error_adversarial.log`: 25 synthetic error-log lines, regression fixtures for spoofed denial, ban and ModSecurity fields |
-| `tests/run.sh` | end-to-end test: starts the pinned Splunk container, installs the package, ingests `samples/` with the three sourcetypes, asserts the fields with searches, removes the container. Exit code 1 on any mismatch. `SPLTA_SABOTAGE=1` breaks one extraction first, to prove the test fails |
+| `tests/run.sh` | end-to-end test: starts the pinned Splunk container, waits for bootstrap and the authenticated API, installs the package, ingests `samples/` with the three sourcetypes, asserts the fields with searches, removes the container. Exit code 1 on any mismatch. `SPLTA_SABOTAGE=1` breaks one extraction first, to prove the test fails |
 | `tests/test_ta.py`, `tests/splunk.sh`, `tests/lib.sh` | the assertions, the container start and stop, and shared helpers |
 | `tests/capture/` | the BunkerWeb stack and traffic script that produced `samples/` (`compose.yml`, `traffic.sh`) |
 | `package.sh` | builds `dist/TA-bunkerweb-<version>.tgz` for Splunkbase |

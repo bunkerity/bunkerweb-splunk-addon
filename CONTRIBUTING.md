@@ -30,6 +30,8 @@ tests/run.sh
 
 `tests/run.sh` starts a pinned `splunk/splunk` container, installs the package, indexes `samples/` and asserts the extracted and CIM fields. It needs Docker, `curl`, `python3` and about 5 GiB of free memory. It starts Splunk with the Splunk license and general terms accepted for that throwaway container, so read them before you run it. `SPLTA_SABOTAGE=1 tests/run.sh` breaks one extraction on purpose and must fail.
 
+New behavior comes with a test in the same pull request: an assertion in `tests/test_ta.py` and, when the events do not exist yet, a sample in `samples/`.
+
 Fix an extraction bug by first adding the sample event and the assertion that fails on the unfixed `props.conf`, then make it pass. Keep the output of the failing run. Anonymize every new sample: documentation IP ranges (`192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`), no real host names, no tokens.
 
 Never rename the three sourcetypes (`bunkerweb:access`, `bunkerweb:error`, `bunkerweb:modsec_audit`) or the `LOG_FORMAT_1` field names: they are a contract with the BunkerWeb documentation. A change to either needs a matching documentation change, a changelog entry and a new version.
