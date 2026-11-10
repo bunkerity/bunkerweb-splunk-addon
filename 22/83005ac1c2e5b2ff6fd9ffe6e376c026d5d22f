@@ -1,0 +1,40 @@
+CHANGELOG.md
+  s_c39081b9144dab::t_a9726ef39deda2 8
+.github/scripts/test_splunk_readiness.py
+  s_c39081b9144dab::t_07226cc6dff446 38,57
+  s_c39081b9144dab::t_6c5bf2e909838a 1-37,39-56,58-69
+tests/lib.sh
+  s_c39081b9144dab::t_a9726ef39deda2 2,6,17-19,24
+tests/splunk.sh
+  s_c39081b9144dab::t_a9726ef39deda2 3,10-12,19-20,40-43
+README.md
+  s_c39081b9144dab::t_a9726ef39deda2 289
+CONTRIBUTING.md
+  s_eb00ee94c4964a::t_173af5ff142a39 33-34
+.bestpractices.json
+  s_eb00ee94c4964a::t_865d27c448b072 60-61,76-77,80-81,88-91,118-119
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2283005ac1c2e5b2ff6fd9ffe6e376c026d5d22f",
+  "prompts": {},
+  "sessions": {
+    "s_c39081b9144dab": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c626-5975-7530-9c96-2ef1c8302a82",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_eb00ee94c4964a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f7af6f6b-f621-439f-bfd6-45db1188e72b",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}
