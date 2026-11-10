@@ -1,0 +1,33 @@
+.github/scripts/test_release_check.py
+  s_c39081b9144dab::t_a8220ac7b51dbe 33-41
+README.md
+  s_c39081b9144dab::t_0d60b90dca2928 105,109
+  s_c39081b9144dab::t_b50f0ec871366f 269,297,300
+TA-bunkerweb/app.manifest
+  s_c39081b9144dab::t_b50f0ec871366f 8
+.github/scripts/release_check.py
+  s_c39081b9144dab::t_b50f0ec871366f 11,28-29
+TA-bunkerweb/default/app.conf
+  s_c39081b9144dab::t_b50f0ec871366f 3,7,16,20
+CHANGELOG.md
+  s_c39081b9144dab::t_0d60b90dca2928 5
+  s_c39081b9144dab::t_b50f0ec871366f 3-4,6-7
+TA-bunkerweb/README.txt
+  s_c39081b9144dab::t_b50f0ec871366f 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e0d2214533964b613a0c63e5d6557202d001773c",
+  "prompts": {},
+  "sessions": {
+    "s_c39081b9144dab": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c626-5975-7530-9c96-2ef1c8302a82",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}
