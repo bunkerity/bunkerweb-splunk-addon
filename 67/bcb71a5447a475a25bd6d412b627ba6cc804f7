@@ -1,0 +1,55 @@
+.bestpractices.json
+  s_c05b6ffbe5ac82::t_e57bc6a2f77bbe 1-41,44-109,112-131,133-136
+  s_c05b6ffbe5ac82::t_ee3e3cece5e1d5 42-43,110-111
+  s_c05b6ffbe5ac82::t_9c258697c94c81 132
+.github/dependabot.yml
+  s_b89affb930c658::t_c4766eb4c88707 18,20
+  s_b89affb930c658::t_8d4932e4407d00 19,23-24
+.github/workflows/plumber.yml
+  s_b89affb930c658::t_8d4932e4407d00 36
+.github/workflows/release.yml
+  s_b89affb930c658::t_8d4932e4407d00 70-81
+README.md
+  s_c05b6ffbe5ac82::t_4223e7e1dffdc5 21
+  s_11a2fb188d7e9f::t_b9840dbb4f959a 12-20,22-24
+.github/plumber/README.md
+  s_b89affb930c658::t_8d4932e4407d00 5,7-8
+  s_b89affb930c658::t_c4766eb4c88707 9
+AGENTS.md
+  s_b89affb930c658::t_c4766eb4c88707 75-76
+CONTRIBUTING.md
+  s_b89affb930c658::t_8d4932e4407d00 22
+  s_b89affb930c658::t_c4766eb4c88707 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "67bcb71a5447a475a25bd6d412b627ba6cc804f7",
+  "prompts": {},
+  "sessions": {
+    "s_11a2fb188d7e9f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c501-4d90-7c62-a5a7-9d1e85221ff7",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_b89affb930c658": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c506-76b6-7512-ba3b-c149b5c13b1f",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_c05b6ffbe5ac82": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2d87acb-e9a5-4886-be8d-696bba884cad",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}
