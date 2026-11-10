@@ -102,10 +102,11 @@ BunkerWeb writes access, error and JSON audit log files. A Universal Forwarder o
 | BunkerWeb | 1.6.17 and later. Events in `samples/` and the tests come from `1.6.18-rc3` |
 | Splunk tested | Splunk Enterprise 10.2.9 (`splunk/splunk:10.2.9`, digest in `tests/splunk.sh`) |
 | CIM | 6.x field names: Web and Intrusion Detection (see the limits below) |
-| AppInspect (recorded run) | `splunk-appinspect` 4.4.0, `--mode precert`: 0 failures, 0 warnings |
+| AppInspect (recorded run) | `splunk-appinspect` 4.4.0, `--mode precert`: 0 failures, 1 private-app warning |
 | License | Apache-2.0, see [LICENSE](LICENSE) |
 
 AppInspect numbers describe the recorded run, not a fresh test result.
+The `check_for_updates_disabled` warning targets private apps. This public Splunkbase-hosted add-on must keep update checks enabled.
 
 </details>
 
@@ -265,6 +266,7 @@ Event types: `bunkerweb_access`, `bunkerweb_access_blocked`, `bunkerweb_modsec_a
 
 ## Things to know
 
+- **Release notifications.** Splunkbase update checks are enabled so Splunk can notify administrators when a new add-on version is available.
 - **Quoted request data.** The app parses the exact documented field order with one anchored extraction and disables automatic KV extraction. Text such as `reason=antibot` or `modsec_id=spoof` inside `ua` or `uri` stays request data. Preserve the format above.
 - **`reason` with a space.** BunkerWeb's id for the bad behavior plugin is `bad behavior`, with a space, in `reason` and in the error log. The app keeps the full id. Search `reason="bad behavior"`.
 - **ModSecurity or plugin?** The app identifies CRS denials by `modsec_id`, never by `reason`, which is empty for ModSecurity denials. Custom `deny` rules without the corresponding `setvar` metadata cannot be identified this way. `modsec_rules` is space-padded and can repeat an id (`" 930100 930110 930110 "`); the app splits it and deduplicates.
@@ -292,10 +294,10 @@ Event types: `bunkerweb_access`, `bunkerweb_access_blocked`, `bunkerweb_modsec_a
 | `package.sh` | builds `dist/TA-bunkerweb-<version>.tgz` for Splunkbase |
 
 ```sh
-./package.sh                       # dist/TA-bunkerweb-1.0.0.tgz
+./package.sh                       # dist/TA-bunkerweb-1.0.1.tgz
 tests/run.sh                       # needs docker, curl, python3 and about 5 GB of free memory
 python3.11 -m venv .venv && .venv/bin/pip install --require-hashes -r requirements-dev.txt
-.venv/bin/splunk-appinspect inspect dist/TA-bunkerweb-1.0.0.tgz --mode precert
+.venv/bin/splunk-appinspect inspect dist/TA-bunkerweb-1.0.1.tgz --mode precert
 ```
 
 `tests/run.sh` starts `splunk/splunk` with `SPLUNK_START_ARGS=--accept-license` and `SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com`.
