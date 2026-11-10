@@ -1,0 +1,212 @@
+.github/scripts/release_check.py
+  s_38465289ee244a::t_678b5283dbd7cb 1-20,22-40,42-50,53-60,62-81
+  s_38465289ee244a::t_1c8fb984528d28 21,41,51-52,61
+tests/lib.sh
+  s_f0a3b537a0271a::t_acd7f484272eef 25-38,74-75
+  s_f0a3b537a0271a::t_4d73babc16ec2e 1-3,5-24,39-43,57-58,67-73,76
+  s_38465289ee244a::t_d43f0fe71abe97 44-56
+  s_f0a3b537a0271a::t_4efc41ac9d5c40 59-66
+  s_00eacb39c50724::t_9240b1a1aac969 4
+TA-bunkerweb/default/props.conf
+  s_00eacb39c50724::t_1241cb3b62b7ac 16,20-28,31,116
+  s_f0a3b537a0271a::t_b5cfba3cf83a8d 72
+  s_f0a3b537a0271a::t_65db843a966e23 1-15,17-19,30,32-34,36-42,44-45,50-65,70,80-91,95-115,117-121
+  s_f0a3b537a0271a::t_6d024bcfe0f2b9 29,43,46-49,92-94
+  s_17c502f0e82c5c::t_fbb1caa6577002 66-68,71,73-76
+  s_f0a3b537a0271a::t_963cb447456b09 35
+  s_f0a3b537a0271a::t_8f50898178424d 69
+  s_17c502f0e82c5c::t_4be9a37ef7ae68 77-79
+pyproject.toml
+  s_38465289ee244a::t_329278067d42a9 1-22
+.github/CODEOWNERS
+  s_38465289ee244a::t_6afc2448d2ed9a 1
+samples/error.log
+  s_f0a3b537a0271a::t_19823256d5beba 1-122
+.gitattributes
+  s_38465289ee244a::t_03794d7897277c 1-4
+.plumber.yaml
+  s_38465289ee244a::t_f3265ff58a64d8 1-8
+TA-bunkerweb/default/app.conf
+  s_f0a3b537a0271a::t_d6fd06cef52b70 1-16
+  s_f0a3b537a0271a::t_b5cfba3cf83a8d 17-20
+README.md
+  s_f0a3b537a0271a::t_6d024bcfe0f2b9 108,111-113,178
+  s_49f42532f73f0d::t_c6ce0d769a39d7 1,4,6-64,73-77,79-86,92,94-95,97,99-102,137,139,158-168,170,181-183,210-211,213-215,231-232,234-236,251,253,267,269-271,291-292
+  s_00eacb39c50724::t_8579a69d94db99 122-124,126-129,176,191-192,228,255-257,261-263
+  s_49f42532f73f0d::t_595d010f12aed8 245-247,275
+  s_8957b83407cdf6::t_487517380b7f1b 284
+  s_f0a3b537a0271a::t_4754d0436f0001 93,296
+  s_f0a3b537a0271a::t_16c90d3eec866b 66-72,78,87-91,96,98,103-107,109-110,114-121,125,130-136,138,140-157,169,171-175,177,179-180,184-190,193-209,212,216-227,229-230,233,237-244,248-250,252,254,258-260,265-266,268,272-274,276-283,285-290,293-295
+  s_fdd33a9a44e884::t_e794567b33e505 2-3,5,65
+  s_49f42532f73f0d::t_8eca11b63f0147 264
+.github/workflows/codeql.yml
+  s_38465289ee244a::t_7d3706d31160ed 1-41
+tests/test_ta.py
+  s_f0a3b537a0271a::t_db53fb6d3c78f4 7,108,136-160,166,168-178,182,186-190,193-208,231-242,282-296,307-319,321-328,379-380,383-410,412-417,420,423-425,436-440,456-459
+  s_f0a3b537a0271a::t_b2645ac728dd99 96,114,118,122,124,126,130,378,428,431,433,435,442,444,451,453
+  s_17c502f0e82c5c::t_9bf30acefddfe8 302-305
+  s_f0a3b537a0271a::t_4efc41ac9d5c40 214-226,228-229
+  s_17c502f0e82c5c::t_449028c299a930 368-369
+  s_f0a3b537a0271a::t_696258db5b27f1 131-134,381-382
+  s_f0a3b537a0271a::t_4e8652b5e32cad 320
+  s_f0a3b537a0271a::t_e9ef6365503499 1-6,8-46,54-64,66-95,97-99,104-106,109,111-113,115-117,119-121,123,125,127-129,135,161-165,179-181,183-185,191-192,209-213,230,279-280,297-299,301,306,329,377,411,418-419,426-427,429-430,432,434,441,443,445-450,452,454-455,460-462
+  s_00eacb39c50724::t_dc2e1bf24bcd3f 422
+  s_17c502f0e82c5c::t_f24a3ff7590805 367
+  s_00eacb39c50724::t_53497ba54fdada 100-101,107,110,227,243-267,276-278
+  s_f0a3b537a0271a::t_7249bd5b7924fb 53,65,300
+  s_00eacb39c50724::t_21fe48944da876 268-275
+  s_17c502f0e82c5c::t_e232a22b088738 351-358,373
+  s_f0a3b537a0271a::t_acd7f484272eef 47-52,167
+  s_17c502f0e82c5c::t_515fce8e34dc9f 102-103,281,330-350,359-366,370-372,374-376,421
+TA-bunkerweb/README.txt
+  s_f0a3b537a0271a::t_4754d0436f0001 8
+  s_f0a3b537a0271a::t_1c443109d6ef16 1-7,9-46
+.github/ISSUE_TEMPLATE/config.yml
+  s_38465289ee244a::t_5c8774f95da678 1-11
+tests/splunk.sh
+  s_00eacb39c50724::t_9240b1a1aac969 10
+  s_f0a3b537a0271a::t_e9e67756cf88f0 1-9,11-63
+.github/dependabot.yml
+  s_38465289ee244a::t_5c8774f95da678 1-47
+.github/workflows/tests.yml
+  s_38465289ee244a::t_9eed61c756dca9 100
+  s_38465289ee244a::t_9976560617f7a4 109-111
+  s_38465289ee244a::t_25b73de767ad3c 1-99,101-108,112-144
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_38465289ee244a::t_5c8774f95da678 1-54
+AGENTS.md
+  s_38465289ee244a::t_df5a15c5a96cc2 1-17,27-87
+  s_38465289ee244a::t_0b0df49497c034 18-26
+CLAUDE.md
+  s_38465289ee244a::t_6afc2448d2ed9a 1-3
+.github/SECURITY.md
+  s_38465289ee244a::t_4fe8814de62e8d 1-29
+.github/PULL_REQUEST_TEMPLATE.md
+  s_38465289ee244a::t_5c8774f95da678 1-21
+.github/workflows/plumber.yml
+  s_38465289ee244a::t_f3265ff58a64d8 1-38
+.github/workflows/scorecard.yml
+  s_38465289ee244a::t_f3265ff58a64d8 1-36
+.github/scripts/test_release_check.py
+  s_38465289ee244a::t_47b3b9e2e7077d 1-47
+CHANGELOG.md
+  s_38465289ee244a::t_9040e6ab73eead 1-9
+CONTRIBUTING.md
+  s_38465289ee244a::t_7913cd13a7c87e 1-52
+CODE_OF_CONDUCT.md
+  s_38465289ee244a::t_6afc2448d2ed9a 1-128
+package.sh
+  s_f0a3b537a0271a::t_5953fdfc95fb11 1-21
+TA-bunkerweb/app.manifest
+  s_f0a3b537a0271a::t_4365c9180a3e26 1-28,30,32-51
+  s_f0a3b537a0271a::t_4754d0436f0001 29,31
+samples/access.log
+  s_f0a3b537a0271a::t_19823256d5beba 1-38
+TA-bunkerweb/default/eventtypes.conf
+  s_f0a3b537a0271a::t_7f42b19ac64ae9 1-15
+samples/error_adversarial.log
+  s_17c502f0e82c5c::t_449028c299a930 10,13,24-25
+  s_17c502f0e82c5c::t_bc26c6df2a321a 23
+  s_17c502f0e82c5c::t_515fce8e34dc9f 1-9,11-12,14-22
+.pre-commit-config.yaml
+  s_38465289ee244a::t_1f9f07d0e74fe2 1-47,49-51
+  s_38465289ee244a::t_4eba31971afc8c 48
+samples/access_adversarial.log
+  s_00eacb39c50724::t_9240b1a1aac969 1-6
+.github/workflows/release.yml
+  s_38465289ee244a::t_ec9a8cfe73a721 48
+  s_38465289ee244a::t_52b119c2e1782a 1-47,49-167
+.github/ISSUE_TEMPLATE/feature_request.yml
+  s_38465289ee244a::t_5c8774f95da678 1-24
+TA-bunkerweb/default/tags.conf
+  s_f0a3b537a0271a::t_0e8fa447e1a91d 1-10
+.github/plumber/README.md
+  s_38465289ee244a::t_d7399bb612c622 1-9
+requirements-dev.txt
+  s_38465289ee244a::t_2a02fda8b02995 1-616
+TA-bunkerweb/metadata/default.meta
+  s_f0a3b537a0271a::t_def8592c286606 1-3
+.gitignore
+  s_f0a3b537a0271a::t_5b7b489a5d7a98 1-6
+  s_8957b83407cdf6::t_7d3ee77321c342 7-11
+tests/capture/compose.yml
+  s_f0a3b537a0271a::t_5b7b489a5d7a98 1-31,36-38,40-41,43-57
+  s_f0a3b537a0271a::t_f7b64fc6e5d074 32-35,39,42
+samples/modsec_audit.log
+  s_f0a3b537a0271a::t_19823256d5beba 1-6
+tests/run.sh
+  s_00eacb39c50724::t_9240b1a1aac969 51,56
+  s_f0a3b537a0271a::t_a7f737181846f2 1-48,50,52,54-55,58-66
+  s_17c502f0e82c5c::t_515fce8e34dc9f 53,57
+  s_f0a3b537a0271a::t_acd7f484272eef 49
+tests/capture/traffic.sh
+  s_f0a3b537a0271a::t_b55bf67e328f07 1-35
+LICENSE
+  s_f0a3b537a0271a::t_6056fe583d3214 1-202
+TA-bunkerweb/LICENSES/LICENSE
+  s_8957b83407cdf6::t_bd2cbd9694bbd3 1-202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "de39ff835f65a229f7cc526fc005b1c2a47be70d",
+  "prompts": {},
+  "sessions": {
+    "s_00eacb39c50724": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c4c0-b50f-77b0-81bf-0acf237af3d0",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_17c502f0e82c5c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c4d7-aa4e-7c42-aa60-466a5accab76",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_38465289ee244a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "000d25db-b51b-4590-b367-4b20632ad8d7",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_49f42532f73f0d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c4b6-99cd-7aa2-a6dd-b9a608bbcb7a",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_8957b83407cdf6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0ed5bf7-382f-48ad-b7ad-d9883e810768",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_f0a3b537a0271a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d4fd7d1-bbb9-400e-93f8-e7b9b7c3ebac",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_fdd33a9a44e884": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c4a3-ab92-7991-a913-6d4abaa7d8e9",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}
