@@ -1,0 +1,57 @@
+# Throwaway stack that produced samples/. All objects are prefixed splta-.
+name: splta-capture
+services:
+  splta-bw:
+    image: bunkerity/bunkerweb:1.6.18-rc3
+    container_name: splta-bw
+    pull_policy: never
+    mem_limit: 1g
+    environment:
+      API_WHITELIST_IP: "127.0.0.0/8 10.77.61.0/24"
+    ports:
+      - "127.0.0.1:19480:8080"
+    networks:
+      splta-net:
+        aliases: [bunkerweb]
+  splta-scheduler:
+    image: bunkerity/bunkerweb-scheduler:1.6.18-rc3
+    container_name: splta-scheduler
+    pull_policy: never
+    mem_limit: 1g
+    volumes:
+      - splta-data:/data
+    environment:
+      BUNKERWEB_INSTANCES: "splta-bw"
+      API_WHITELIST_IP: "127.0.0.0/8 10.77.61.0/24"
+      SERVER_NAME: "www.example.com"
+      MULTISITE: "no"
+      USE_BUNKERNET: "no"
+      SEND_ANONYMOUS_REPORT: "no"
+      SECURITY_MODE: "block"
+      USE_LIMIT_REQ: "yes"
+      LIMIT_REQ_URL: "/"
+      LIMIT_REQ_RATE: "1000r/s"
+      LIMIT_REQ_URL_1: "/limited"
+      LIMIT_REQ_RATE_1: "2r/s"
+      USE_BLACKLIST: "yes"
+      BLACKLIST_URI: "^/blocked-by-blacklist"
+      USE_BAD_BEHAVIOR: "yes"
+      BAD_BEHAVIOR_STATUS_CODES: "404"
+      BAD_BEHAVIOR_THRESHOLD: "5"
+      BAD_BEHAVIOR_BAN_TIME: "3600"
+      BAD_BEHAVIOR_COUNT_TIME: "10"
+      MODSECURITY_SEC_AUDIT_LOG_PARTS: "BFH"
+      MODSECURITY_SEC_AUDIT_LOG: "/var/log/bunkerweb/modsec_audit-splta.log"
+      ACCESS_LOG_1: "/var/log/bunkerweb/access-splunk.log"
+      LOG_FORMAT_1: 'time=$$time_iso8601 host=$$host client=$$remote_addr request_id=$$request_id method=$$request_method uri="$$request_uri" status=$$status bytes=$$body_bytes_sent ua="$$http_user_agent" reason=$$reason modsec_rules="$$modsecurity_rules" modsec_score=$$modsecurity_anomaly_score modsec_id=$$modsecurity_unique_id'
+      CUSTOM_CONF_MODSEC_audit-json: "SecAuditLogFormat JSON"
+    networks: [splta-net]
+networks:
+  splta-net:
+    name: splta-net
+    ipam:
+      config:
+        - subnet: 10.77.61.0/24
+volumes:
+  splta-data:
+    name: splta-data

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "2.0.0",
+  "info": {
+    "title": "BunkerWeb Add-on for Splunk",
+    "id": {
+      "group": null,
+      "name": "TA-bunkerweb",
+      "version": "1.0.0"
+    },
+    "author": [
+      {
+        "name": "Bunkerity",
+        "email": null,
+        "company": "Bunkerity"
+      }
+    ],
+    "releaseDate": null,
+    "description": "Official BunkerWeb add-on for Splunk: sourcetypes, field extractions and CIM mappings (Web, Intrusion Detection) for the BunkerWeb access log, error log and ModSecurity JSON audit log.",
+    "classification": {
+      "intendedAudience": "IT Operations",
+      "categories": ["Security, Fraud & Compliance"],
+      "developmentStatus": "Production/Stable"
+    },
+    "commonInformationModels": {
+      "Web": "6.0.0",
+      "Intrusion Detection": "6.0.0"
+    },
+    "license": {
+      "name": "Apache-2.0",
+      "text": "LICENSES/LICENSE",
+      "uri": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "privacyPolicy": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "releaseNotes": {
+      "name": "README",
+      "text": "README.txt",
+      "uri": "https://github.com/bunkerity/bunkerweb-splunk-addon"
+    }
+  },
+  "dependencies": null,
+  "tasks": null,
+  "inputGroups": null,
+  "incompatibleApps": null,
+  "platformRequirements": null,
+  "supportedDeployments": ["_standalone", "_distributed", "_search_head_clustering"],
+  "targetWorkloads": ["_search_heads", "_indexers"]
+}

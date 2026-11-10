@@ -1,0 +1,144 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  # Cancel superseded branch runs only. A release run on a tag finishes.
+  cancel-in-progress: ${{ github.ref_type == 'branch' }}
+
+jobs:
+  plumber:
+    uses: ./.github/workflows/plumber.yml
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+      id-token: write
+
+  codeql:
+    uses: ./.github/workflows/codeql.yml
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+
+  pre-commit:
+    name: pre-commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.11"
+      - name: Install locked development tools
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install --require-hashes -r requirements-dev.txt
+          .venv/bin/python -m pip check
+      - name: Self-check of the release script
+        run: python3 -I -m unittest discover -s .github/scripts
+      - name: Run pre-commit
+        run: .venv/bin/pre-commit run --all-files --show-diff-on-failure --color always
+
+  secrets:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GITLEAKS_VERSION: "8.30.1"
+      # SHA-256 of gitleaks_8.30.1_linux_x64.tar.gz, from the release's gitleaks_8.30.1_checksums.txt.
+      GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Gitleaks
+        run: |
+          set -euo pipefail
+          curl -fsSL -o gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          echo "${GITLEAKS_SHA256}  gitleaks.tar.gz" | sha256sum --check -
+          tar -xzf gitleaks.tar.gz gitleaks
+          rm gitleaks.tar.gz
+      - name: Scan the history and the working tree
+        run: |
+          ./gitleaks git --redact --verbose --no-banner .
+          ./gitleaks dir --redact --verbose --no-banner .
+
+  package:
+    name: Package and AppInspect
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.11"
+      - name: Install locked development tools
+        run: |
+          # AppInspect reads file types through python-magic, which needs libmagic.
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libmagic1
+          python -m venv .venv
+          .venv/bin/python -m pip install --require-hashes -r requirements-dev.txt
+      - name: Build the package
+        run: ./package.sh
+      - name: Run AppInspect (precert)
+        run: |
+          set -euo pipefail
+          .venv/bin/splunk-appinspect inspect dist/TA-bunkerweb-*.tgz --mode precert --data-format json --output-file appinspect.json
+          # --ci is not used: it also fails the run on warnings, which the gate only reports.
+          jq -c '.summary' appinspect.json
+          jq -e '.summary.failure == 0 and .summary.error == 0' appinspect.json >/dev/null
+      - name: Upload the package
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ta-package
+          path: dist/TA-bunkerweb-*.tgz
+          if-no-files-found: error
+      - name: Upload the AppInspect report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: appinspect-report
+          path: appinspect.json
+          if-no-files-found: ignore
+
+  # Live test on a real Splunk Enterprise container (tests/run.sh). It only runs when the repository variable
+  # RUN_SPLUNK_TESTS is "true": tests/splunk.sh starts the splunk/splunk image with the Splunk licence and general
+  # terms accepted, and the maintainers decide whether CI may accept them. Needs Docker and about 5 GiB of free memory.
+  splunk:
+    name: Live Splunk test
+    if: vars.RUN_SPLUNK_TESTS == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the live test
+        run: tests/run.sh
+      - name: Remove the Splunk container
+        if: always()
+        run: tests/splunk.sh down

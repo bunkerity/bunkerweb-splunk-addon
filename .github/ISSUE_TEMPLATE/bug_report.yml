@@ -1,0 +1,54 @@
+name: 🐛 Bug Report
+description: Report a problem with the BunkerWeb add-on for Splunk
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Before submitting, search [the existing and past issues](https://github.com/bunkerity/bunkerweb-splunk-addon/issues?q=is%3Aissue+sort%3Acreated-desc+). Report vulnerabilities through the [security policy](https://github.com/bunkerity/bunkerweb-splunk-addon/security/policy), not here.
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: Affected area
+      description: Select the primary area involved.
+      options:
+        - Field extraction (props.conf)
+        - Timestamp or line breaking
+        - CIM mapping (Web, Intrusion Detection)
+        - Eventtypes or tags
+        - Packaging or installation
+        - Documentation
+        - Other / unsure
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Add-on, BunkerWeb and Splunk Enterprise or Cloud versions, and where the add-on is installed (search head, indexer, heavy forwarder).
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: bunkerweb-config
+    attributes:
+      label: BunkerWeb log settings
+      description: |
+        The `ACCESS_LOG_1` and `LOG_FORMAT_1` settings and the Universal Forwarder inputs you use.
+        ⚠️ Remove secrets and private data first. ⚠️
+      render: shell
+  - type: textarea
+    id: events
+    attributes:
+      label: Raw events
+      description: |
+        A few raw events that show the problem, one per line, and the sourcetype they were indexed with.
+        ⚠️ Anonymize IP addresses, host names and tokens first. ⚠️
+      render: text

@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Captured log bytes are test data: never convert them.
+samples/** -text -eol

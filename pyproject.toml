@@ -1,0 +1,22 @@
+# This repository ships a Splunk app, not a Python package. The file only declares the development
+# tools (formatting, lint, hooks, AppInspect) and their configuration. The add-on version lives in
+# TA-bunkerweb/default/app.conf.
+[project]
+name = "bunkerweb-splunk-addon-dev"
+version = "0"
+description = "Development tools for the BunkerWeb add-on for Splunk (TA-bunkerweb)"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+dev = ["black>=24", "ruff>=0.9", "pre-commit>=4", "splunk-appinspect>=4"]
+
+[tool.black]
+line-length = 160
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 160
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

@@ -1,0 +1,51 @@
+# See https://pre-commit.com for more information
+# Every remote hook is pinned to a full commit SHA; the comment names the release it freezes.
+# Samples are captured log bytes (test data): no hook may rewrite them.
+exclude: ^(samples/|dist/|\.venv/)
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # frozen: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ["--allow-multiple-documents"]
+      - id: check-case-conflict
+
+  # ShellCheck from PyPI (the same ShellCheck 0.11.0 as BunkerWeb's hook), so no Docker daemon is needed.
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: 745eface02aef23e168a8afb6b5737818efbea95 # frozen: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
+  # Scans the staged changes at commit time. CI scans the whole history with the gitleaks binary (tests.yml).
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # frozen: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      # Black and Ruff run from the repository's hash-locked .venv (requirements-dev.txt). The path is POSIX:
+      # Windows contributors need .venv/Scripts/python.exe.
+      - id: black
+        name: Black Python Formatter
+        entry: .venv/bin/python -m black
+        language: system
+        types: [python]
+        require_serial: true
+      - id: ruff
+        name: Ruff Python Linter
+        entry: .venv/bin/python -m ruff check
+        language: system
+        types: [python]
+        require_serial: true
+      # Prettier, pinned, in a pre-commit-managed Node environment. Skips the files BunkerWeb's .prettierignore skips.
+      - id: prettier
+        name: Prettier
+        entry: prettier --write
+        language: node
+        language_version: 24.12.0
+        additional_dependencies: ["prettier@3.9.10"]
+        types_or: [yaml, markdown]
+        exclude: ^(CHANGELOG\.md|CODE_OF_CONDUCT\.md|CONTRIBUTING\.md|README\.md|\.github/SECURITY\.md|TA-bunkerweb/)

@@ -1,0 +1,24 @@
+name: 🚀 Feature Request
+description: Suggest an improvement to the BunkerWeb add-on for Splunk
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Before submitting, search [the existing and past feature requests](https://github.com/bunkerity/bunkerweb-splunk-addon/issues?q=is%3Aissue+sort%3Acreated-desc+%5BFEATURE%5D+in%3Atitle).
+  - type: textarea
+    id: description
+    attributes:
+      label: What do you need?
+      description: The search, dashboard, data model or field you are missing, and why.
+    validations:
+      required: true
+  - type: textarea
+    id: events
+    attributes:
+      label: Example events
+      description: |
+        Raw BunkerWeb events the feature relates to.
+        ⚠️ Anonymize IP addresses, host names and tokens first. ⚠️
+      render: text

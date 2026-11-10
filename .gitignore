@@ -1,0 +1,11 @@
+.venv/
+.cache/
+dist/
+*.tgz
+.env
+__pycache__/
+.ruff_cache/
+appinspect.json
+release/
+sbom-input/
+release-notes.md
