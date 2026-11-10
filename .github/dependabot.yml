@@ -15,9 +15,13 @@ updates:
       github-actions:
         patterns: ["*"]
 
-  # requirements-dev.txt is generated from pyproject.toml: review the lock against the process in AGENTS.md.
+  # Weekly version updates scan pyproject.toml only; maintainers regenerate the hash lock with uv (see AGENTS.md).
+  # The pip updater treats uv's compiled pins as independent requirements and can break AppInspect's constraints.
+  # Security updates can bypass exclude-paths; validate and regenerate their locks before merging too.
   - package-ecosystem: pip
     directory: /
+    exclude-paths:
+      - requirements-dev.txt
     schedule:
       interval: weekly
       day: monday

@@ -67,13 +67,18 @@ jobs:
           [README](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/README.md).
           EOF
       - name: Generate the SBOM
-        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
-        with:
-          scan-type: fs
-          scan-ref: sbom-input
-          scanners: vuln,secret
-          format: cyclonedx
-          output: release/TA-bunkerweb-${{ steps.version.outputs.version }}.cdx.json
+        env:
+          TRIVY_VERSION: "0.70.0"
+          # SHA-256 of trivy_0.70.0_Linux-64bit.tar.gz, from the release's checksums file.
+          TRIVY_SHA256: 8b4376d5d6befe5c24d503f10ff136d9e0c49f9127a4279fd110b727929a5aa9
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          trivy_dir="$(mktemp -d)"
+          curl -fsSL -o "${trivy_dir}/trivy.tar.gz" "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz"
+          echo "${TRIVY_SHA256}  ${trivy_dir}/trivy.tar.gz" | sha256sum --check -
+          tar -xzf "${trivy_dir}/trivy.tar.gz" -C "$trivy_dir" trivy
+          "${trivy_dir}/trivy" fs --scanners vuln,secret --format cyclonedx --output "release/TA-bunkerweb-${VERSION}.cdx.json" sbom-input
       - name: Write SHA256SUMS
         run: (cd release && sha256sum -- *.tgz *.cdx.json > SHA256SUMS)
       - name: Attest the package and the SBOM

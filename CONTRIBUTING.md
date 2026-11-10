@@ -18,6 +18,8 @@ python3 -m venv .venv
 
 Hooks cover whitespace, final newlines, YAML, ShellCheck, Gitleaks, Black (160 columns), Ruff and Prettier. The Black and Ruff hooks use the POSIX path `.venv/bin/python`; on Windows use `.venv/Scripts/python.exe` in your copy of `.pre-commit-config.yaml`. Run `.venv/bin/pre-commit run --all-files` before opening a pull request. Hooks do not replace the checks below or CI.
 
+Dependabot's weekly version updates scan Python tool declarations in `pyproject.toml` and exclude the generated `requirements-dev.txt`. Regenerate the universal hash lock with the uv command in [AGENTS.md](AGENTS.md) and include it in the same dependency PR before merging. Keep AppInspect's transitive constraints: independent lockfile bumps can introduce incompatible versions or omit new dependencies and their hashes. Security-update PRs can bypass the exclusion and need the same lock regeneration and review; leave an alert open when its fix conflicts with AppInspect. Verify a fresh installation with `--require-hashes` and run AppInspect after each update.
+
 ## Checks
 
 ```sh

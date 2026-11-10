@@ -72,7 +72,8 @@ The lock is generated from `pyproject.toml`, never edited by hand:
 uv pip compile pyproject.toml --extra dev --universal --python-version 3.11 --generate-hashes --output-file requirements-dev.txt
 ```
 
-Use `--upgrade-package <name>` for a targeted update, and review Dependabot's lock changes against the same process.
+Use `--upgrade-package <name>` for a targeted update, and review generated lock changes against the same process.
+Dependabot's weekly pip version scan excludes `requirements-dev.txt` and updates the declarations in `pyproject.toml` only. Regenerate the lock with the command above in the same PR before merging a Python dependency update; never merge independent bumps to compiled transitive pins. AppInspect constrains several of them, including `lxml<6`. Dependabot security updates can bypass `exclude-paths`; validate and regenerate those locks too. A dependency conflict is not a resolved security alert.
 
 A test is not coverage until it has failed: when a new assertion or extraction fix lands, run it against the unfixed `props.conf` and keep the failing output. `SPLTA_SABOTAGE=1` does this for the `uri_path` extraction.
 

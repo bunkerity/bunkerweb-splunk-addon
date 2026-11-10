@@ -9,6 +9,19 @@
 
 <p align="center">Search blocked requests by IP, plugin, ModSecurity rule or signature.</p>
 
+<p align="center">
+  <a href="https://github.com/bunkerity/bunkerweb-splunk-addon/releases"><img alt="Latest release" src="https://img.shields.io/github/v/release/bunkerity/bunkerweb-splunk-addon" /></a>
+  <a href="LICENSE"><img alt="Apache-2.0 License" src="https://img.shields.io/github/license/bunkerity/bunkerweb-splunk-addon" /></a>
+  <a href="https://github.com/bunkerity/bunkerweb-splunk-addon/commits/main/"><img alt="Last commit" src="https://img.shields.io/github/last-commit/bunkerity/bunkerweb-splunk-addon/main" /></a>
+  <a href="https://github.com/bunkerity/bunkerweb-splunk-addon/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/bunkerity/bunkerweb-splunk-addon" /></a>
+  <a href="https://github.com/bunkerity/bunkerweb-splunk-addon/pulls"><img alt="Open pull requests" src="https://img.shields.io/github/issues-pr/bunkerity/bunkerweb-splunk-addon" /></a>
+  <br />
+  <a href="https://github.com/bunkerity/bunkerweb-splunk-addon/actions/workflows/tests.yml?query=branch%3Amain"><img alt="Tests status on main" src="https://img.shields.io/github/actions/workflow/status/bunkerity/bunkerweb-splunk-addon/tests.yml?branch=main&amp;label=Tests" /></a>
+  <a href="https://securityscorecards.dev/viewer/?uri=github.com/bunkerity/bunkerweb-splunk-addon"><img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/bunkerity/bunkerweb-splunk-addon/badge" /></a>
+  <a href="https://www.bestpractices.dev/projects/16529"><img alt="OpenSSF Best Practices" src="https://www.bestpractices.dev/projects/16529/badge" /></a>
+  <a href="#setup"><img alt="Splunk Enterprise 10.x" src="https://img.shields.io/badge/Splunk%20Enterprise-10.x-65a637?logo=splunk&amp;logoColor=white" /></a>
+</p>
+
 | Logs | Search-time fields | CIM mappings |
 | --- | --- | --- |
 | Access · Error · Audit JSON | Plugin denials · Bans · ModSecurity | Web · Intrusion Detection |

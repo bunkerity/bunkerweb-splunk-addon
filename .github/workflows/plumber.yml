@@ -33,6 +33,6 @@ jobs:
           config-file: .plumber.yaml
           min-score: B
           soft-fail: false
-          upload-sarif: ${{ github.event_name != 'pull_request' }}
+          upload-sarif: ${{ github.event_name != 'pull_request' && (github.event.repository.private == false || vars.CODEQL_PRIVATE == 'true') }}
           score-push: ${{ github.event_name != 'pull_request' && github.event.repository.private == false }}
           upload-artifacts: true
