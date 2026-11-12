@@ -1,0 +1,23 @@
+AGENTS.md
+  s_a80bb9c1402ec9::t_4927484ebc7ee4 29-30,34
+  s_a80bb9c1402ec9::t_8786f849386bd0 25
+README.md
+  s_a80bb9c1402ec9::t_9b6bbd1b95600f 154
+  s_a80bb9c1402ec9::t_4927484ebc7ee4 23,86
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eb7820642f0393b4305105602dea21473e99057f",
+  "prompts": {},
+  "sessions": {
+    "s_a80bb9c1402ec9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1d01b-da27-7eb0-9f97-debdb6bed20d",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}
