@@ -20,6 +20,7 @@
   <a href="https://securityscorecards.dev/viewer/?uri=github.com/bunkerity/bunkerweb-splunk-addon"><img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/bunkerity/bunkerweb-splunk-addon/badge" /></a>
   <a href="https://www.bestpractices.dev/projects/16529"><img alt="OpenSSF Best Practices" src="https://www.bestpractices.dev/projects/16529/badge" /></a>
   <a href="#setup"><img alt="Splunk Enterprise 10.x" src="https://img.shields.io/badge/Splunk%20Enterprise-10.x-65a637?logo=splunk&amp;logoColor=white" /></a>
+  <a href="https://splunkbase.splunk.com/app/10342"><img alt="Splunkbase" src="https://img.shields.io/badge/Splunkbase-10342-65a637?logo=splunk&amp;logoColor=white" /></a>
 </p>
 
 | Logs | Search-time fields | CIM mappings |
@@ -82,7 +83,7 @@ It gives Splunk three sourcetypes for BunkerWeb's logs, with field extraction an
 source IP, plugin, ModSecurity rule or signature, and see them in the Web and Intrusion Detection data models.
 
 BunkerWeb needs no code change for this: you set a log format and an audit log format, a Universal Forwarder reads the files, and
-this app turns them into events. See the [BunkerWeb documentation](https://docs.bunkerweb.io) for BunkerWeb itself.
+this app turns them into events. See the [BunkerWeb documentation](https://docs.bunkerweb.io/1.6/) for BunkerWeb itself.
 
 This add-on ships Splunk configuration only: no executable ingestion code or dashboards.
 
@@ -150,7 +151,7 @@ any shipper, or written to a file with `ERROR_LOG=/var/log/bunkerweb/error-splun
 
 ### 2. Splunk setup
 
-1. Install `TA-bunkerweb-<version>.tgz` (built by `./package.sh`) on the search head and on the indexers, or on the heavy forwarder that parses the data. All extractions run at search time. Nothing needs configuring in the app.
+1. Install the add-on from [Splunkbase](https://splunkbase.splunk.com/app/10342): in Splunk Web, go to Apps > Find More Apps and search for BunkerWeb, or download the package from the listing. Alternatively, download `TA-bunkerweb-<version>.tgz` from a [GitHub release](https://github.com/bunkerity/bunkerweb-splunk-addon/releases) and verify it against the release's `SHA256SUMS`. You can also build the package with `./package.sh`. Install it on the search head and on the indexers, or on the heavy forwarder that parses the data. All extractions run at search time. Nothing needs configuring in the app.
 2. Add the inputs to the Universal Forwarder (`inputs.conf`) and pick your index:
 
 ```conf

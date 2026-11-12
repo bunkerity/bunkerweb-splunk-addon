@@ -22,14 +22,16 @@ This is the canonical agent guide. `CLAUDE.md` imports it; edit this file when p
 | Supported Splunk    | Tested on Splunk Enterprise 10.2.9 (the image digest is pinned in `tests/splunk.sh`). CIM field names 6.x (`app.manifest` declares Web and Intrusion Detection 6.0.0). Other Splunk versions: to confirm |
 | Architectures       | Configuration only, so platform independent. The live test runs on linux/amd64                                                                                                                           |
 | Artifact            | `TA-bunkerweb-<version>.tgz` (one top-level `TA-bunkerweb/` directory, deterministic bytes), plus `SHA256SUMS`, a CycloneDX SBOM, and signed build provenance on tagged releases                         |
+| Distribution        | [Splunkbase app 10342](https://splunkbase.splunk.com/app/10342), listed since v1.0.1 (2026-11-10). The GitHub repository homepage points to the listing                                                  |
 | Functional checks   | Splunk AppInspect `--mode precert` (offline, no Docker); live ingest test `tests/run.sh` (Docker, `splunk/splunk`, about 5 GiB free memory)                                                              |
 | Release path        | Signed `vX.Y.Z` tag, `release.yml` (tests reused, package attested, `release` environment approval, GitHub release). Splunkbase upload is manual: see `CONTRIBUTING.md`                                  |
+
+The repository is public. Scorecard runs only on public repositories; CodeQL runs on public repositories or when `CODEQL_PRIVATE` is `true`. Both workflows run for this repository. CodeRabbit may review this public code; its configuration has not been verified.
 
 ### Accepted exceptions
 
 - **No fuzzing.** There is no parser code beyond Splunk's own configuration engine. The regular expressions in `props.conf` are exercised by the live test on real samples.
-- **No mypy, no pytest, no coverage gate.** The only Python is one assertion script run end to end by `tests/run.sh` (its exit code is the gate) and one small release script covered by `unittest`. A strict-typing and coverage threshold would measure scaffolding, not the add-on. The coverage that matters is the field and CIM assertion list in `tests/test_ta.py`.
-- **Scorecard, Codecov and CodeRabbit are off while the repository is private.** Scorecard runs only on a public repository. CodeRabbit must not receive private code. CodeQL runs only on a public repository or once the repository variable `CODEQL_PRIVATE` is `true` (private repositories need GitHub Code Security).
+- **No mypy, no pytest, no coverage gate.** The only Python is one assertion script run end to end by `tests/run.sh` (its exit code is the gate) and one small release script covered by `unittest`. A strict-typing and coverage threshold would measure scaffolding, not the add-on. The coverage that matters is the field and CIM assertion list in `tests/test_ta.py`. There is no Codecov integration because there is no coverage gate.
 - **The live Splunk test is opt-in in CI.** It runs when the repository variable `RUN_SPLUNK_TESTS` is `true`, because it accepts Splunk's license and general terms for the throwaway container. Releases require it.
 - **Local hooks use the POSIX `.venv/bin/python` path.** Windows contributors need `.venv/Scripts/python.exe` in their copy of the Black and Ruff entries.
 - **Dependabot cannot see the Splunk image** pinned in `tests/splunk.sh` (neither a Dockerfile nor a compose file). Bump it by hand and record the new digest.
