@@ -1,0 +1,39 @@
+README.md
+  s_658dd0f1daf711::t_b2c6fc86376919 585
+  s_658dd0f1daf711::t_7f992f1bb19882 433
+  s_658dd0f1daf711::t_7092bb5d83fa23 280,284-290
+  s_4521ac6ebdbf36::t_21118e0a570c15 300-336
+  s_658dd0f1daf711::t_cbf28c17b30494 447-449,463-476,478
+  s_658dd0f1daf711::t_7b6da06793fedb 172
+  s_658dd0f1daf711::t_c6566f4a705189 142
+  s_658dd0f1daf711::t_6579adaddf31cb 139
+  s_658dd0f1daf711::t_20c5165327ed61 254
+  s_658dd0f1daf711::t_470774adbce196 119-138,140-141,143-147,155,161-163,165-167,169-171,173-192,204-210,212-253,255-279,281-283,291-299,337-432,434-442
+  s_658dd0f1daf711::t_9f0e631aea40fc 107
+  s_658dd0f1daf711::t_41397c58d16876 193-203,211
+  s_4521ac6ebdbf36::t_0cbd37e0c82f9c 477
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bee264f99f7de07c04687f2307b4f68c039ab96d",
+  "prompts": {},
+  "sessions": {
+    "s_4521ac6ebdbf36": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ea48-bf45-7281-a60a-7cd64445ff37",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    },
+    "s_658dd0f1daf711": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d599164c-04dc-4da9-abfb-5e269552e968",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "TheophileDiot <tdiot@bunkerity.com>"
+    }
+  }
+}
